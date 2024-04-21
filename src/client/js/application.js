@@ -1,5 +1,9 @@
 import { themeCSS } from 'harmony-css';
 import { createElement, documentStyle } from 'harmony-ui';
+import { Controller } from './controller.js';
+import { EVENT_CARD_CREATED } from './controllerevents.js';
+import { MainContent } from './view/maincontent.js';
+import { Toolbar } from './view/toolbar.js';
 import applicationCSS from '../css/application.css';
 import htmlCSS from '../css/html.css';
 
@@ -7,24 +11,25 @@ documentStyle(htmlCSS);
 documentStyle(themeCSS);
 
 class Application {
-	#htmlElement;
-	constructor() {
+	static #htmlElement;
+	static #appToolbar = new Toolbar();
+	static #appContent = new MainContent();
+	static {
 		this.#initPage();
+
+		Controller.addEventListener(EVENT_CARD_CREATED, event => console.info(event.detail));
 	}
 
-	#initPage() {
+	static #initPage() {
 		this.#htmlElement = createElement('div', {
 			parent: document.body,
 			attachShadow: { mode: 'closed' },
 			adoptStyle: applicationCSS,
 			childs:[
-				/*
-				this.#appToolbar.htmlElement,
-				this.#appContent.htmlElement,
-				this.#appFooter.htmlElement,
-				*/
+				this.#appToolbar.getHTMLElement(),
+				this.#appContent.getHTMLElement(),
+				//this.#appFooter.htmlElement,
 			]
 		});
 	}
 }
-new Application();
