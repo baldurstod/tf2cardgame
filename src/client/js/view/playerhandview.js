@@ -21,7 +21,6 @@ export class PlayerHandView extends CardContainerView {
 
 	refreshHTML() {
 		const childs = this.#playerHand.getChilds();
-		console.info(childs);
 		const nodes = [];
 		for (const child of childs) {
 			const cardView = getParentView(child);

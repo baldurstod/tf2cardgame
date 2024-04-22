@@ -39,12 +39,12 @@ export class CardView extends CardContainerView {
 					event.stopPropagation();
 				},
 				dragover: event => {
-					event.preventDefault();
-					event.stopPropagation();
+					if (this.#card.getRoot().isBoard) {
+						event.preventDefault();
+						event.stopPropagation();
+					}
 				},
 				drop: event => {
-					console.info(event);
-
 					if (draggedEntity) {
 						const previousParent = draggedEntity.getParent?.();
 						draggedEntity.setParent(this.#card);
@@ -59,7 +59,6 @@ export class CardView extends CardContainerView {
 
 	refreshHTML() {
 		const childs = this.#card.getChilds();
-		console.info(childs);
 		for (const child of childs) {
 			const cardView = getParentView(child);
 			if (cardView) {

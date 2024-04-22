@@ -38,7 +38,6 @@ export class BoardView extends CardContainerView {
 
 	refreshHTML() {
 		const childs = this.#board.getChilds();
-		console.info(childs);
 		const nodes = [];
 		for (const child of childs) {
 			const cardView = getParentView(child);

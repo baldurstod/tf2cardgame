@@ -27,4 +27,17 @@ export class CardContainer {
 	getChilds() {
 		return this.#childs;
 	}
+	getRoot() {
+		let currentEntity = this;
+		let parent;
+		while (currentEntity) {
+			parent = currentEntity.#parent;
+			if (parent) {
+				currentEntity = parent;
+			} else {
+				return currentEntity;
+			}
+		}
+		return currentEntity;
+	}
 }

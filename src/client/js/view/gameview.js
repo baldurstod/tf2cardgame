@@ -68,7 +68,7 @@ export class GameView {
 			if (!cardContainer) {
 				return;
 			}
-			console.info(cardContainer);
+			//console.info(cardContainer);
 			this.#refreshElement(cardContainer);
 		}
 	}
