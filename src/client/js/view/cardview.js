@@ -28,9 +28,12 @@ export class CardView extends CardContainerView {
 				this.#htmlCard = createElement('div', {
 					class: 'card',
 				}),
+				createElement('div', {
+					class: 'spacer',
+				}),
 				this.#htmlContainer = createElement('div', {
 					class: 'container',
-				})
+				}),
 			],
 			events: {
 				dragstart: event => {
