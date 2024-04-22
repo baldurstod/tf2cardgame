@@ -70,6 +70,7 @@ export class GameView {
 			}
 			//console.info(cardContainer);
 			this.#refreshElement(cardContainer);
+			view.refreshHTML();
 		}
 	}
 

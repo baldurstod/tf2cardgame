@@ -1,12 +1,13 @@
 import { vec2 } from 'gl-matrix';
 import { CardContainer } from './cardcontainer.js';
 import { CARD_LOCATION_UNKNOWN } from './cardlocations.js';
-import { CARD_TYPE_UNKNOWN } from './cardtypes.js';
+import { CARD_SUBTYPE_UNKNOWN, CARD_TYPE_UNKNOWN } from './cardtypes.js';
 
 export class Card extends CardContainer {
 	#position = vec2.create();
 	#location = CARD_LOCATION_UNKNOWN;
 	#type = CARD_TYPE_UNKNOWN;
+	#subtype = CARD_SUBTYPE_UNKNOWN;
 	#stack = new Set();
 	#isPinned = false;
 	#isDeleted = false;
@@ -27,5 +28,11 @@ export class Card extends CardContainer {
 	}
 	isPinned() {
 		return this.#isPinned;
+	}
+	getType() {
+		return this.#type;
+	}
+	getSubtype() {
+		return this.#subtype;
 	}
 }

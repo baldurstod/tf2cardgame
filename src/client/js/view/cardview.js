@@ -4,14 +4,22 @@ import { Controller } from '../controller.js';
 import { EVENT_REFRESH_ELEMENTS } from '../controllerevents.js';
 import { getParentView } from './parents.js';
 import cardCSS from '../../css/card.css';
-
+import { CARD_TYPE_MAP, CARD_TYPE_RESOURCE, CARD_TYPE_UNKNOWN } from '../game/cardtypes.js';
 
 export let draggedEntity;
+
+const typeToString = new Map();
+
+typeToString.set(CARD_TYPE_UNKNOWN, 'Unknown');
+typeToString.set(CARD_TYPE_RESOURCE, 'resource');
+typeToString.set(CARD_TYPE_MAP, 'map');
 
 export class CardView extends CardContainerView {
 	#card;
 	#htmlElement;
 	#htmlCard;
+	#htmlCardType;
+	#htmlCardSubtype;
 	#htmlContainer;
 	constructor(card) {
 		super();
@@ -27,6 +35,14 @@ export class CardView extends CardContainerView {
 			childs: [
 				this.#htmlCard = createElement('div', {
 					class: 'card',
+					childs: [
+						this.#htmlCardType = createElement('div', {
+							class: 'type',
+						}),
+						this.#htmlCardSubtype = createElement('div', {
+							class: 'subtype',
+						}),
+					],
 				}),
 				createElement('div', {
 					class: 'spacer',
@@ -69,6 +85,9 @@ export class CardView extends CardContainerView {
 				return;
 			}
 		}
+
+		this.#htmlCardType.innerText = typeToString.get(this.#card.getType());
+
 	}
 
 	getHTMLElement() {
