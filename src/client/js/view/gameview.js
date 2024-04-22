@@ -1,10 +1,10 @@
 import { createElement } from 'harmony-ui';
-import { getCardView, setCardView } from './cards.js';
+import { getParentView, setParentView } from './parents.js';
 import { BoardView } from './boardview.js';
 import { CardView } from './cardview.js';
 import { PlayerHandView } from './playerhandview.js';
 import { Controller } from '../controller.js';
-import { EVENT_CARD_CREATED } from '../controllerevents.js';
+import { EVENT_CARD_CREATED, EVENT_REFRESH_ELEMENTS } from '../controllerevents.js';
 import { GameController } from '../game/gamecontroller.js';
 import gameCSS from '../../css/game.css';
 
@@ -14,10 +14,18 @@ export class GameView {
 	static #htmlBoard = new BoardView(GameController.board);
 
 	static  {
+		setParentView(GameController.playerHand, this.#htmlPlayerHand);
+		setParentView(GameController.board, this.#htmlBoard);
+
 		this.#initHTML();
 		Controller.addEventListener(EVENT_CARD_CREATED, event => {
 			this.#addCard(event.detail);
 			this.#placeCard(event.detail);
+		});
+		Controller.addEventListener(EVENT_REFRESH_ELEMENTS, event => {
+			for (const element of event.detail) {
+				this.#refreshElement(element);
+			}
 		});
 	}
 
@@ -50,24 +58,38 @@ export class GameView {
 	static #addCard(card) {
 		const view = new CardView(card);
 		//this.#cards.set(card, view);
-		setCardView(card, view);
+		setParentView(card, view);
 	}
 
 	static #placeCard(card) {
-		const view = getCardView(card);
+		const view = getParentView(card);
 		if (view) {
 			const cardContainer = card.getParent();
 			if (!cardContainer) {
 				return;
 			}
 			console.info(cardContainer);
-			switch (true) {
-				case cardContainer.isPlayerHand:
-					this.#htmlPlayerHand.refreshHTML();
-					break;
-				default:
-					break;
-			}
+			this.#refreshElement(cardContainer);
+		}
+	}
+
+	static #refreshElement(element) {
+		switch (true) {
+			case element.isCard:
+				const cardView = getParentView(element);
+				if (cardView) {
+					cardView.refreshHTML();
+				}
+				break;
+			case element.isPlayerHand:
+				this.#htmlPlayerHand.refreshHTML();
+				break;
+			case element.isBoard:
+				this.#htmlBoard.refreshHTML();
+				break;
+			default:
+				console.error('Unknown element', element);
+				break;
 		}
 	}
 }

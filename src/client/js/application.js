@@ -2,6 +2,7 @@ import { themeCSS } from 'harmony-css';
 import { createElement, documentStyle } from 'harmony-ui';
 import { Controller } from './controller.js';
 import { EVENT_CARD_CREATED } from './controllerevents.js';
+import { GameController } from './game/gamecontroller.js';
 import { MainContent } from './view/maincontent.js';
 import { Toolbar } from './view/toolbar.js';
 import applicationCSS from '../css/application.css';
@@ -15,9 +16,14 @@ class Application {
 	static #appToolbar = new Toolbar();
 	static #appContent = new MainContent();
 	static {
+		Controller.addEventListener(EVENT_CARD_CREATED, event => console.info(event.detail));
 		this.#initPage();
 
-		Controller.addEventListener(EVENT_CARD_CREATED, event => console.info(event.detail));
+
+		GameController.createCard();
+		GameController.createCard();
+		GameController.createCard();
+		GameController.createCard();
 	}
 
 	static #initPage() {

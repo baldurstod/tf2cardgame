@@ -10,6 +10,10 @@ export class Card extends CardContainer {
 	#stack = new Set();
 	#isPinned = false;
 	#isDeleted = false;
+	constructor() {
+		super();
+		this.isCard = true;
+	}
 
 	setPosition(position) {
 		vec2.copy(this.#position, position);

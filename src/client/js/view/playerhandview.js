@@ -1,11 +1,13 @@
-import { createElement, display, hide } from 'harmony-ui';
-import { getCardView } from './cards.js';
+import { createElement } from 'harmony-ui';
+import { CardContainerView } from './cardcontainerview.js';
+import { getParentView } from './parents.js';
 import playerHandCSS from '../../css/playerhand.css';
 
-export class PlayerHandView {
+export class PlayerHandView extends CardContainerView {
 	#playerHand;
 	#htmlElement;
 	constructor(playerHand) {
+		super();
 		this.#playerHand = playerHand;
 		this.#initHTML();
 	}
@@ -22,16 +24,19 @@ export class PlayerHandView {
 		console.info(childs);
 		const nodes = [];
 		for (const child of childs) {
-			const cardView = getCardView(child);
+			const cardView = getParentView(child);
 			if (cardView) {
 				nodes.push(cardView.getHTMLElement());
 			}
 		}
 		this.#htmlElement.replaceChildren(...nodes);
-
 	}
 
 	getHTMLElement() {
-		return this.#htmlElement;
+		return this.#htmlElement.host;
+	}
+
+	insertCard(cardView) {
+		this.#htmlElement.append(cardView);
 	}
 }

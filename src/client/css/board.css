@@ -3,4 +3,7 @@
 	flex: 1;
 	width: 100%;
 	background-color: bisque;
+	overflow: scroll;
+	display: flex;
+	gap: 1rem;
 }

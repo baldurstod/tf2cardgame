@@ -3,6 +3,9 @@ html{
 	width:100%;
 	--font-size: 16px;
 	font-size: var(--font-size);
+
+	--card-height: 20rem;
+	--card-width: 15rem;
 }
 body{
 	accent-color: var(--theme-accent-primary);

@@ -1,4 +1,5 @@
 import { vec2 } from 'gl-matrix';
+import { Board } from './board.js';
 import { Card } from './card.js';
 import { PlayerHand } from './playerhand.js';
 import { Controller } from '../controller.js';
@@ -8,6 +9,7 @@ export class GameController {
 	static #cards = new Set();
 	static #size = vec2.fromValues(2000, 2000);//TODO: set variable ?
 	static #playerHand = new PlayerHand();
+	static #board = new Board();
 
 	static {
 
@@ -25,5 +27,8 @@ export class GameController {
 
 	static get playerHand() {
 		return this.#playerHand;
+	}
+	static get board() {
+		return this.#board;
 	}
 }
