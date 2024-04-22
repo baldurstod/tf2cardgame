@@ -36,14 +36,14 @@ export class Toolbar {
 								click: () => Controller.dispatchEvent(new CustomEvent(EVENT_INCREASE_FONT_SIZE)),
 							}
 						}),
-						createElement('div', {
-							innerHTML: 'add card',
-							events: {
-								click: () => GameController.createCard()
-								//Controller.dispatchEvent(new CustomEvent(EVENT_INCREASE_FONT_SIZE)),
-							}
-						}),
 					]
+				}),
+				createElement('div', {
+					innerHTML: 'add card',
+					events: {
+						click: () => GameController.createCard(),
+						//Controller.dispatchEvent(new CustomEvent(EVENT_INCREASE_FONT_SIZE)),
+					}
 				}),
 			],
 		});

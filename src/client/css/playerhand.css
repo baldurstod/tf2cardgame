@@ -1,0 +1,9 @@
+:host{
+	background-color: blue;
+	/*height: var(--card-height);*/
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	flex: 0 var(--card-height);
+	width: 100%;
+}

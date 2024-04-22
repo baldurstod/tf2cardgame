@@ -1,22 +1,22 @@
 import { createElement, display, hide } from 'harmony-ui';
-import cardCSS from '../../css/card.css';
+import boardCSS from '../../css/board.css';
 
-export class CardView {
-	#card;
+export class BoardView {
+	#board;
 	#htmlElement;
-	constructor(card) {
-		this.#card = card;
+	constructor(board) {
+		this.#board = board;
 		this.#initHTML();
 	}
 
 	#initHTML() {
 		this.#htmlElement = createElement('div', {
 			attachShadow: { mode: 'closed' },
-			adoptStyle: cardCSS,
-		}).host;
+			adoptStyle: boardCSS,
+		});
 	}
 
-	refreshHTML() {
+	#refreshHTML() {
 
 	}
 
