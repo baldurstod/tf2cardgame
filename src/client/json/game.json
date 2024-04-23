@@ -1,0 +1,53 @@
+{
+	"resources": {
+		"gravel": {
+
+		}
+	},
+	"recipes": {
+		"gravel": [
+			{
+				"time": 5,
+				"stack": [
+					"type:mercenary",
+					"gravelpit"
+				]
+			}
+		]
+	},
+	"cards": {
+		"scout": {
+			"type": "mercenary"
+		},
+		"sniper": {
+			"type": "mercenary"
+		},
+		"soldier": {
+			"type": "mercenary"
+		},
+		"demoman": {
+			"type": "mercenary"
+		},
+		"medic": {
+			"type": "mercenary"
+		},
+		"heavy": {
+			"type": "mercenary"
+		},
+		"pyro": {
+			"type": "mercenary"
+		},
+		"spy": {
+			"type": "mercenary"
+		},
+		"engineer": {
+			"type": "mercenary"
+		},
+		"gravel": {
+			"type": "resource"
+		},
+		"gravelpit": {
+			"type": "map"
+		}
+	}
+}

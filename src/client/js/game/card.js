@@ -6,13 +6,16 @@ import { CARD_SUBTYPE_UNKNOWN, CARD_TYPE_UNKNOWN } from './cardtypes.js';
 export class Card extends CardContainer {
 	#position = vec2.create();
 	#location = CARD_LOCATION_UNKNOWN;
-	#type = CARD_TYPE_UNKNOWN;
+	#name;
+	#type = '';
 	#subtype = CARD_SUBTYPE_UNKNOWN;
 	#stack = new Set();
 	#isPinned = false;
 	#isDeleted = false;
-	constructor() {
+	constructor(name, type) {
 		super();
+		this.#name = name;
+		this.#type = type;
 		this.isCard = true;
 	}
 
@@ -28,6 +31,9 @@ export class Card extends CardContainer {
 	}
 	isPinned() {
 		return this.#isPinned;
+	}
+	getName() {
+		return this.#name;
 	}
 	getType() {
 		return this.#type;

@@ -20,3 +20,7 @@
 	/*position: absolute;*/
 	/*top: 2rem;*/
 }
+
+:host.type-mercenary{
+	background-color: chocolate;
+}

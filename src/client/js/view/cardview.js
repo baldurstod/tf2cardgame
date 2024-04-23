@@ -18,6 +18,7 @@ export class CardView extends CardContainerView {
 	#card;
 	#htmlElement;
 	#htmlCard;
+	#htmlCardName;
 	#htmlCardType;
 	#htmlCardSubtype;
 	#htmlContainer;
@@ -36,6 +37,9 @@ export class CardView extends CardContainerView {
 				this.#htmlCard = createElement('div', {
 					class: 'card',
 					childs: [
+						this.#htmlCardName = createElement('div', {
+							class: 'name',
+						}),
 						this.#htmlCardType = createElement('div', {
 							class: 'type',
 						}),
@@ -86,7 +90,8 @@ export class CardView extends CardContainerView {
 			}
 		}
 
-		this.#htmlCardType.innerText = typeToString.get(this.#card.getType());
+		this.#htmlCardName.innerText = this.#card.getName();//typeToString.get(this.#card.getType());
+		this.#htmlCardType.innerText = this.#card.getType();//typeToString.get(this.#card.getType());
 
 	}
 

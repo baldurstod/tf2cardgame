@@ -20,10 +20,10 @@ class Application {
 		this.#initPage();
 
 
-		GameController.createCard();
-		GameController.createCard();
-		GameController.createCard();
-		GameController.createCard();
+		GameController.createCard('scout');
+		GameController.createCard('scout');
+		GameController.createCard('scout');
+		GameController.createCard('gravelpit');
 	}
 
 	static #initPage() {

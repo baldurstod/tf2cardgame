@@ -4,6 +4,7 @@ import { Card } from './card.js';
 import { PlayerHand } from './playerhand.js';
 import { Controller } from '../controller.js';
 import { EVENT_CARD_CREATED } from '../controllerevents.js';
+import { createCard } from './cards.js';
 
 export class GameController {
 	static #cards = new Set();
@@ -16,8 +17,8 @@ export class GameController {
 		//Controller.addEventListener(EVENT_REFRESH_CARD, event => this.#refreshHTML(event.detail));
 	}
 
-	static createCard() {
-		const card = new Card();
+	static createCard(name) {
+		const card = createCard(name);//new Card();
 		card.setParent(this.#playerHand);
 		this.#cards.add(card);
 
