@@ -3,10 +3,13 @@ import { Card } from './card.js';
 import game from '../../json/game.json';
 
 const cards = new Map();
+const recipes = new Map();
 
 for (const name in game.cards) {
-	const card = game.cards[name];
 	cards.set(name, game.cards[name]);
+}
+for (const name in game.recipes) {
+	recipes.set(name, game.recipes[name]);
 }
 
 
